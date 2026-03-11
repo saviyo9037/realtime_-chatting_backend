@@ -100,6 +100,15 @@ const authController = {
         } catch (error) {
             res.status(500).send("Server error: " + error.message)
         }
+    },
+    getAllUsers: async (req, res) => {
+        try {
+            // Get all users except the current user
+            const users = await User.find({ _id: { $ne: req.user.id } }).select('-password')
+            res.json(users)
+        } catch (error) {
+            res.status(500).json({ message: error.message })
+        }
     }
 }
 
