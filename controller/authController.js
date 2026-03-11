@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const User = require("../model/AuthSchema")
+const User = require("../models/AuthSchema")
 
 const authController = {
     register: async (req, res) => {

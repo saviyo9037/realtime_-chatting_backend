@@ -1,4 +1,4 @@
-const Message = require("../model/messageSchema")
+const Message = require("../models/messageSchema")
 
 const messageController = {
     // Send a message via REST API
