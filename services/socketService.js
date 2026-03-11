@@ -48,7 +48,7 @@ exports.initialize = (server) => {
             const { receiverId, message } = data
 
             // Save message to database
-            const Message = require("../model/messageSchema")
+            const Message = require("../models/messageSchema")
             const newMessage = new Message({
                 sender: socket.user.id,
                 receiver: receiverId,
@@ -86,7 +86,7 @@ exports.initialize = (server) => {
 
         // Handle read receipt
         socket.on("markRead", async (data) => {
-            const Message = require("../model/messageSchema")
+            const Message = require("../models/messageSchema")
             await Message.updateMany(
                 { sender: data.senderId, receiver: socket.user.id, read: false },
                 { read: true }

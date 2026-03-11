@@ -5,6 +5,11 @@ const User = require("../models/authSchema")
 const authController = {
     register: async (req, res) => {
         try {
+            // Check if JWT_KEY is configured
+            if (!process.env.JWT_KEY) {
+                return res.status(500).json({ message: "Server configuration error: JWT_KEY not set" })
+            }
+
             const { name, email, phone, password, role } = req.body
             if (!name || !email || !phone || !password) {
                 return res.status(400).send("enter all credentials")
@@ -52,6 +57,11 @@ const authController = {
     },
     login: async (req, res) => {
         try {
+            // Check if JWT_KEY is configured
+            if (!process.env.JWT_KEY) {
+                return res.status(500).json({ message: "Server configuration error: JWT_KEY not set" })
+            }
+
             const { email, password } = req.body
 
             if (!email || !password) {
